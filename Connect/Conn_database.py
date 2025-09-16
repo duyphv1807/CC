@@ -1,5 +1,5 @@
 import sqlite3
-db_name = r"C:\Users\ASUS\final_database"
+db_name = r"C:\Users\LENOVO\Documents\test3"
 def connect_to_database():
     try:
         connection = sqlite3.connect(db_name)
