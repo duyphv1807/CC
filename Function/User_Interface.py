@@ -124,7 +124,7 @@ class Dashboard:
         self.create_tabbed_interface(work_area)
 
     def create_navbar(self):
-        """Thanh trênr"""
+        """Thanh trên"""
         navbar = tk.Frame(self.root, bg=ColorScheme.PRIMARY, height=60)
         navbar.pack(fill="x")
         navbar.pack_propagate(False)
@@ -392,7 +392,7 @@ class Dashboard:
         notebook.add(tab, text="   🔍 Truy Vấn SQL   ")
 
         # SQL Editor
-        editor_card = ModernCard(tab, "Trình Soạn Thảo SQL", "✏️")
+        editor_card = ModernCard(tab, " SQL", "✏️")
         editor_card.pack(fill="x", padx=20, pady=(20, 10))
 
         editor_content = tk.Frame(editor_card, bg=ColorScheme.BG_CARD)
@@ -417,7 +417,7 @@ class Dashboard:
 
         # Sample query
         self.sql_text.insert("1.0",
-                             "SELECT * FROM per_capita_income;")
+                             "SELECT * FROM ;")
 
         # Execute button - TRUYỀN tree_sql thay vì tree
         ttk.Button(editor_content,
@@ -479,13 +479,13 @@ class Dashboard:
                  bg=ColorScheme.BG_CARD,
                  fg=ColorScheme.TEXT_PRIMARY).pack(side="left", padx=(30, 10))
 
-        # Year input (disabled for now)
+        # Year input (chưa có)
         self.entry_year = tk.Entry(model_row,
                                    font=("Segoe UI", 10),
                                    width=10,
                                    relief="solid",
                                    bd=1,
-                                   state="disabled")  # Disabled since no functionality
+                                   state="disabled")  # chưa có
         self.entry_year.pack(side="left", padx=5)
         self.entry_year.insert(0, "2025")
 
@@ -513,7 +513,8 @@ class Dashboard:
                  bg="#E6F7FF",
                  fg=ColorScheme.PRIMARY,
                  wraplength=800).pack(padx=15, pady=10)
-# ====================== Main Execution ======================
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = Dashboard(root)
@@ -527,3 +528,4 @@ if __name__ == "__main__":
     root.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
     root.mainloop()
+
