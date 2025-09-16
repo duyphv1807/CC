@@ -12,7 +12,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # ================== Hàm chức năng ==================
 last_df = None
 current_fig = None
-DB_FOLDER = r"C:\Users\LENOVO\Documents\test3\final_report"
+DB_FOLDER = r"C:\Users\LENOVO\Documents\test3\final_report\final_report.db"
 db_name = "database"
 def Create_database(entry_widget):
     # Tạo thư mục nếu chưa tồn tại
@@ -22,7 +22,7 @@ def Create_database(entry_widget):
     full_path = os.path.join(DB_FOLDER, db_name)
 
     try:
-        conn = sqlite3.connect(full_path)  # tạo hoặc mở database
+        conn = connect_to_database()  # tạo hoặc mở database
 
         # Cập nhật đường dẫn vào Entry trong giao diện
         entry_widget.delete(0, "end")
@@ -322,8 +322,8 @@ def Save_chart():
         messagebox.showinfo("Thành công", f"Biểu đồ đã được lưu tại:\n{file_path}")
     except Exception as e:
         messagebox.showerror("Lỗi", f"Không thể lưu biểu đồ:\n{e}")
-def Excute_sql(Entry_database, sql_text, tree, combo_x, combo_y):
-    """Thực thi câu lệnh SQL từ ô nhập và hiển thị kết quả"""
+def Excute_sql(Entry_database, sql_text, tree_sql, combo_x, combo_y):
+    """Thực thi câu lệnh SQL từ ô nhập và hiển thị kết quả TRỰC TIẾP"""
     global last_df
 
     # Lấy đường dẫn DB và câu lệnh SQL
@@ -347,7 +347,8 @@ def Excute_sql(Entry_database, sql_text, tree, combo_x, combo_y):
             if df.empty:
                 messagebox.showinfo("Thông tin", "Truy vấn thành công nhưng không có dữ liệu.")
             else:
-                Show_table_from_df(df, tree)
+                # Hiển thị TRỰC TIẾP trong tree_sql (tab SQL)
+                Show_table_from_df(df, tree_sql)
                 Update_column_options(df, combo_x, combo_y)
                 last_df = df
         else:
@@ -357,6 +358,5 @@ def Excute_sql(Entry_database, sql_text, tree, combo_x, combo_y):
 
     except Exception as e:
         messagebox.showerror("Lỗi SQL", str(e))
-
 def clone():
     pass
